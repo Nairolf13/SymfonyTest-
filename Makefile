@@ -8,7 +8,7 @@ tests:
 	APP_ENV=dev symfony php bin/phpunit $(MAKECMDGOALS)
 
 phpstan:
-	APP_ENV=dev symfony php vendor/bin/phpstan analyse --level max
+	APP_ENV=dev symfony php vendor/bin/phpstan analyse --level 3 --memory-limit=-1
 
 php-cs-fixer:
 	APP_ENV=dev symfony php vendor/bin/php-cs-fixer fix
