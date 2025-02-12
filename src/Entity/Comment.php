@@ -44,7 +44,7 @@ class Comment implements \Stringable
     private ?string $photoFilename = null;
 
     #[ORM\Column(length: 255, options: ['default' => CommentStateEnum::Submitted->value])]
-        private ?CommentStateEnum $state = CommentStateEnum::Submitted;
+    private ?CommentStateEnum $state = CommentStateEnum::Submitted;
 
     public function __toString(): string
     {
@@ -118,7 +118,7 @@ class Comment implements \Stringable
 
     public static function setFilename(UploadedFile $photo): string
     {
-        return bin2hex(random_bytes(6)).'.'.$photo->guessExtension();
+        return bin2hex(random_bytes(6)) . '.' . $photo->guessExtension();
     }
 
     public function getState(): ?CommentStateEnum
@@ -131,5 +131,15 @@ class Comment implements \Stringable
         $this->state = $state;
 
         return $this;
+    }
+
+    public function getStateAsString(): string
+    {
+        return $this->state->value;
+    }
+    
+    public function setStateAsString(string $state): void
+    {
+        $this->state = CommentStateEnum::from($state);
     }
 }

@@ -52,11 +52,14 @@ class CommentCrudController extends AbstractCrudController
             ->setUploadedFileNamePattern(fn(UploadedFile $photo) => Comment::setFilename($photo))
             ->setBasePath('/uploads/photos')
             ->setLabel('Photo');
-        yield ChoiceField::new('state')->setChoices([
-            'Published' => CommentStateEnum::Published,
-            'Rejected' => CommentStateEnum::Submitted,
-            'Spam' => CommentStateEnum::Spam,
-        ]);
+            yield ChoiceField::new('state')->setChoices([
+                'Published' => CommentStateEnum::Published,
+                'Ham' => CommentStateEnum::Ham,
+                'Rejected' => CommentStateEnum::Rejected,
+                'Submitted' => CommentStateEnum::Submitted,
+                'Spam' => CommentStateEnum::Spam,
+                'PotentialSpam' => CommentStateEnum::PotentialSpam,
+            ]);
         yield DateTimeField::new('createdAt')
             ->setRequired(false)
             ->setTimezone('Europe/Paris')->onlyOnIndex();
